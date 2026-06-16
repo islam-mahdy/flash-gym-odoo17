@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_gym_class_view" model="ir.ui.view">
+        <field name="name">gym.class.tree</field>
+        <field name="model">gym.class</field>
+        <field name="arch" type="xml">
+            <tree string="classes">
+                <field name="class_code"/>
+                <field name="name"/>
+                <field name="coach_id"/>
+                <field name="specialization_id"/>
+                <field name="scheduled_date"/>
+                <field name="duration_hours"/>
+                <field name="available_spots"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'completed'"
+                       decoration-info="state == 'ongoing'"
+                       decoration-danger="state == 'cancelled'"
+                       decoration-warning="state == 'scheduled'" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_gym_class_form" model="ir.ui.view">
+        <field name="name">gym.class.form</field>
+        <field name="model">gym.class</field>
+        <field name="arch" type="xml">
+            <form string="class">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Full Name"/></h1>
+                        <h2><field name="class_code" readonly="1"/></h2>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="coach_id"/>
+                            <field name="specialization_id"/>
+                        </group>
+                        <group>
+                            <field name="capacity"/>
+                            <field name="available_spots"/>
+                            <field name="state"/>
+                            <field name="booking_ids" widget="many2many_tags"/>
+                            <field name="enrolled_count"/>
+                            <field name="requires_membership_class"/>
+                        </group>
+                        <group>
+                            <field name="scheduled_date"/>
+                            <field name="start__date"/>
+                            <field name="duration_hours"/>
+                            <field name="end__date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="notes" placeholder="Add any notes here..."/>
+                    </group>
+
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gym_class" model="ir.actions.act_window">
+        <field name="name">classes</field>
+        <field name="res_model">gym.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

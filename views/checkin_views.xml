@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_gym_checkin_view" model="ir.ui.view">
+        <field name="name">gym.checkin.tree</field>
+        <field name="model">gym.checkin</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="member_id"/>
+                <field name="membership_id"/>
+                <field name="checkin_time"/>
+                <field name="checkout_time"/>
+                <field name="duration_minutes"/>
+                <field name="entry_method"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_gym_checkin_form" model="ir.ui.view">
+        <field name="name">gym.checkin.form</field>
+        <field name="model">gym.checkin</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="member_id"/>
+                            <field name="membership_id"/>
+                            <field name="checkin_time"/>
+                            <field name="checkout_time"/>
+                            <field name="duration_minutes"/>
+                            <field name="entry_method"/>
+                        </group>
+                     </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gym_checkin" model="ir.actions.act_window">
+        <field name="name">Checkin</field>
+        <field name="res_model">gym.checkin</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

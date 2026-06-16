@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_gym_member_view" model="ir.ui.view">
+        <field name="name">gym.member.tree</field>
+        <field name="model">gym.member</field>
+        <field name="arch" type="xml">
+            <tree string="Members">
+                <field name="member_code"/>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="join_date"/>
+                <field name="membership_state"
+                       decoration-success="membership_state == 'active'"
+                       decoration-danger="membership_state == 'expired'"
+                       decoration-warning="membership_state == 'frozen'"
+                       decoration-muted="membership_state == 'cancelled'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_gym_member_form" model="ir.ui.view">
+        <field name="name">gym.member.form</field>
+        <field name="model">gym.member</field>
+        <field name="arch" type="xml">
+            <form string="Member">
+                <header>
+                    <field name="membership_state" widget="statusbar"
+                           statusbar_visible="new,active,expired,frozen,cancelled"/>
+                </header>
+                <sheet>
+                    <field name="image_1920" widget="image"
+                           class="oe_avatar"
+                           options="{'preview_image': 'image_128'}"/>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Full Name"/></h1>
+                        <h2><field name="member_code" readonly="1"/></h2>
+                    </div>
+                    <group>
+                        <group string="Personal Info">
+                            <field name="date_of_birth"/>
+                            <field name="age"/>
+                            <field name="gender"/>
+                        </group>
+                        <group string="Contact">
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="join_date"/>
+                        </group>
+                    </group>
+                    <group string="Financial Summary">
+                        <group>
+                            <field name="total_paid_lifetime"/>
+                            <field name="total_refunded"/>
+                        </group>
+                        <group>
+                            <field name="total_outstanding"/>
+                            <field name="active_membership_id"/>
+                            <field name="membership_count"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="notes" placeholder="Add any notes here..."/>
+                    </group>
+
+                    <notebook>
+                    <page string="Memberships" name="memberships">
+                        <field name="membership_ids">
+                            <tree editable="button">
+                                <field name="plan_id"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="state" widget="badge"
+                                       decoration-success="state == 'active'"
+                                       decoration-danger="state == 'expired'"
+                                       decoration-muted="state == 'cancelled'"/>
+                                <field name="total_price"/>
+                                <field name="amount_paid"/>
+                                <field name="balance_due"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gym_member" model="ir.actions.act_window">
+        <field name="name">Members</field>
+        <field name="res_model">gym.member</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

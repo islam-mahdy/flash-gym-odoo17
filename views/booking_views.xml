@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_gym_booking_tree" model="ir.ui.view">
+        <field name="name">gym.booking.tree</field>
+        <field name="model">gym.booking</field>
+        <field name="arch" type="xml">
+            <tree string="Bookings">
+                <field name="booking_date"/>
+                <field name="member_id"/>
+                <field name="class_id"/>
+                <field name="attended" widget="boolean_toggle"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'confirmed'"
+                       decoration-warning="state == 'waitlisted'"
+                       decoration-danger="state == 'cancelled'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_gym_booking_form" model="ir.ui.view">
+        <field name="name">gym.booking.form</field>
+        <field name="model">gym.booking</field>
+        <field name="arch" type="xml">
+            <form string="Booking">
+                <header>
+                    <button name="action_cancel" string="Cancel Booking" type="object"
+                            class="btn-danger" invisible="state == 'cancelled'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="confirmed,waitlisted,cancelled"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="member_id" placeholder="Select Member"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Class &amp; Schedule Details">
+                            <field name="class_id" options="{'no_create': True}"/>
+                            <field name="booking_date"/>
+                        </group>
+                        <group string="Attendance &amp; Status">
+                            <field name="attended"/>
+                            <field name="cancellation_reason" invisible="state != 'cancelled'" required="state == 'cancelled'"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gym_booking" model="ir.actions.act_window">
+        <field name="name">Bookings</field>
+        <field name="res_model">gym.booking</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first gym class booking!
+            </p>
+        </field>
+    </record>
+
+</odoo>

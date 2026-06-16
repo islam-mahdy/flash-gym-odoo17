@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_gym_membership_view" model="ir.ui.view">
+        <field name="name">gym.membership.tree</field>
+        <field name="model">gym.membership</field>
+        <field name="arch" type="xml">
+            <tree string="Memberships">
+                <field name="member_id"/>
+                <field name="plan_id"/>
+                <field name="state"
+                       decoration-info="state == 'pending'"
+                       decoration-success="state == 'active'"
+                       decoration-danger="state == 'expired'"
+                       decoration-warning="state == 'frozen'"
+                       decoration-muted="state == 'cancelled'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_gym_membership_form" model="ir.ui.view">
+        <field name="name">gym.membership.form</field>
+        <field name="model">gym.membership</field>
+        <field name="arch" type="xml">
+            <form string="Membership">
+                <header>
+                    <button name="action_active" string="Set Active" type="object" class="btn-success"
+                            invisible="state != 'pending'" />
+                    <button name="action_frozen" string="Set Frozen" type="object" class="btn-secondary"
+                             invisible="state != 'active'" />
+                    <button name="action_unfreeze" string="Unfreeze" type="object" class="btn-primary"
+                             invisible="state != 'frozen'" />
+                    <button name="action_cancelled" string="Set Cancelled" type="object" class="btn-warning"
+                            invisible="state not in ('frozen','pending')" />
+                    <button name="action_open_payment_wizard" string="Open Payment" type="object" class="btn-primary"
+                            icon="fa-money" invisible="balance_due == 0 or state not in ('pending', 'active')"
+                    />
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="pending,active,expired,frozen,cancelled"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="member_id" />
+                        <h1><field name="member_id" placeholder="Member"/></h1>
+
+                        <label for="plan_id" />
+                        <h2><field name="plan_id" /></h2>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <group string="Funds">
+                            <field name="payment_ids" widget="many2many_tags"/>
+                            <field name="payment_count"/>
+                            <field name="total_price"/>
+                            <field name="amount_paid"/>
+                            <field name="balance_due"/>
+                        </group>
+                        <group string="States Trans">
+                            <field name="freeze_start_date" />
+                            <field name="total_frozen_days" />
+                            <field name="cancelled_reason" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="notes" placeholder="Add any notes here..."/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gym_membership" model="ir.actions.act_window">
+        <field name="name">Memberships</field>
+        <field name="res_model">gym.membership</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

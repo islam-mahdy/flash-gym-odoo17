@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+
+        <record id="seq_flash_gym_member" model="ir.sequence">
+                <field name="name">GYM Member</field>
+                <field name="code">gym.member.seq</field>
+                <field name="prefix">MEM-</field>
+                <field name="padding">3</field>
+                <field name="number_increment">1</field>
+        </record>
+
+        <record id="seq_flash_gym_coach" model="ir.sequence">
+                <field name="name">GYM Coach</field>
+                <field name="code">gym.coach.seq</field>
+                <field name="prefix">COACH-</field>
+                <field name="padding">3</field>
+                <field name="number_increment">1</field>
+        </record>
+
+        <record id="seq_flash_gym_class" model="ir.sequence">
+                <field name="name">GYM Class</field>
+                <field name="code">gym.class.seq</field>
+                <field name="prefix">CLASS-</field>
+                <field name="padding">4</field>
+                <field name="number_increment">1</field>
+        </record>
+
+        <record id="seq_flash_gym_payment" model="ir.sequence">
+                <field name="name">GYM Payment</field>
+                <field name="code">gym.payment.seq</field>
+                <field name="prefix">PAY-</field>
+                <field name="padding">4</field>
+                <field name="number_increment">1</field>
+        </record>
+
+
+
+
+    </data>
+</odoo>

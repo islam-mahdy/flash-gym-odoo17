@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_gym_subscription_plan_list" model="ir.ui.view">
+        <field name="name">gym.subscription.plan.tree</field>
+        <field name="model">gym.subscription.plan</field>
+        <field name="arch" type="xml">
+            <tree string="Subscription Plans">
+                <field name="plan_code"/>
+                <field name="name"/>
+                <field name="duration_days"/>
+                <field name="price"/>
+                <field name="currency_id"/>
+                <field name="includes_pool"/>
+                <field name="includes_classes"/>
+                <field name="includes_personal_training"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_gym_subscription_plan_form" model="ir.ui.view">
+        <field name="name">gym.subscription.plan.form</field>
+        <field name="model">gym.subscription.plan</field>
+        <field name="arch" type="xml">
+            <form string="Subscription Plan">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Plan Name"/></h1>
+                        <h2><field name="plan_code" placeholder="e.g. BASIC-M"/></h2>
+                    </div>
+                    <group>
+                        <group string="Pricing and Duration">
+                            <field name="price"/>
+                            <field name="currency_id"/>
+                            <field name="duration_days"/>
+                            <field name="max_freeze_days"/>
+                        </group>
+                        <group string="Included Services">
+                            <field name="includes_pool" widget="boolean_toggle"/>
+                            <field name="includes_classes" widget="boolean_toggle"/>
+                            <field name="includes_personal_training" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description" placeholder="Marketing description..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gym_subscription_plan" model="ir.actions.act_window">
+        <field name="name">Subscription Plans</field>
+        <field name="res_model">gym.subscription.plan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,96 @@
+<odoo>
+
+    <record id="gym_payment_report_action" model="ir.actions.report">
+        <field name="name">Payment Report</field>
+        <field name="model">gym.payment</field>
+        <field name="binding_model_id" ref="model_gym_payment" />
+        <field name="report_type">qweb-html</field>
+        <field name="binding_type">report</field>
+        <field name="report_name">flash_gym.gym_payment_report_template</field>
+    </record>
+
+    <template id="gym_payment_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="rec">
+                    <h1>Payment Receipt</h1>
+                    <h2>
+                        [<t t-esc="rec.name" />]
+                    </h2>
+                    <style>
+
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                        }
+
+                        th,
+                        td {
+                            border: 1px solid #000;
+                            padding: 6px;
+                        }
+
+                        th {
+                            background-color: #dddddd;
+                            text-align: center;
+                            font-weight: bold;
+                        }
+
+                        td {
+                            text-align: left;
+                        }
+
+                    </style>
+
+
+                    <table>
+                        <thead>
+                            <th colspan="4">Info</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Member</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="rec.member_id.name" />
+                                </td>
+                                <td>
+                                    <strong>Membership Plan</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="rec.membership_id.plan_id.name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Amount</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="rec.amount" />
+                                </td>
+                                <td>
+                                    <strong>Payment Method</strong>
+                                </td>
+                                <td>
+                                    <t t-esc="rec.payment_method" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br />
+
+                    <br />
+
+
+                </t>
+            </t>
+        </t>
+
+    </template>
+
+
+
+
+</odoo>

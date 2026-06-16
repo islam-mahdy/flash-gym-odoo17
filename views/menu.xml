@@ -1,0 +1,65 @@
+<odoo>
+  <data>
+
+    <menuitem id="flash_gym_root_menu"
+            name="Flash GYM"
+    />
+
+
+    <menuitem id="menu_flash_gym_member"
+              name="Members"
+              parent="flash_gym_root_menu"
+              action="action_gym_member"
+    />
+
+
+    <menuitem id="menu_flash_gym_coach"
+              name="Coaches"
+              parent="flash_gym_root_menu"
+              action="action_gym_coach"
+    />
+
+
+
+    <menuitem id="menu_flash_gym_subscription_plan"
+              name="Subscription Plans"
+              parent="flash_gym_root_menu"
+              action="action_gym_subscription_plan"
+    />
+
+    <menuitem id="menu_flash_gym_membership"
+              name="Memberships"
+              parent="flash_gym_root_menu"
+              action="action_gym_membership"
+    />
+
+    <menuitem id="menu_flash_gym_class"
+              name="Classes"
+              parent="flash_gym_root_menu"
+              action="action_gym_class"
+    />
+
+    <menuitem id="menu_flash_gym_booking"
+              name="Bookings"
+              parent="flash_gym_root_menu"
+              action="action_gym_booking"
+    />
+
+    <menuitem id="menu_flash_gym_checkin"
+              name="Check-IN"
+              parent="flash_gym_root_menu"
+              action="action_gym_checkin"
+    />
+
+
+    <menuitem id="menu_flash_gym_payment"
+              name="Payments"
+              parent="flash_gym_root_menu"
+              action="action_gym_payment"
+    />
+
+
+
+
+  </data>
+</odoo>

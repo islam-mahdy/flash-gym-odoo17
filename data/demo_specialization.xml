@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="spec_yoga" model="gym.specialization">
+        <field name="name">Yoga</field>
+    </record>
+    <record id="spec_hiit" model="gym.specialization">
+        <field name="name">HIIT</field>
+    </record>
+    <record id="spec_weightlifting" model="gym.specialization">
+        <field name="name">Weightlifting</field>
+    </record>
+    <record id="spec_pilates" model="gym.specialization">
+        <field name="name">Pilates</field>
+    </record>
+    <record id="spec_cardio" model="gym.specialization">
+        <field name="name">Cardio</field>
+    </record>
+    <record id="spec_swimming" model="gym.specialization">
+        <field name="name">Swimming</field>
+    </record>
+</odoo>
