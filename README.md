@@ -47,11 +47,6 @@ A complete **Gym Management System** built as an Odoo module.
 
 ---
 
-## 📸 Screenshots
-
-*(Add screenshots here after you take them from Odoo interface)*
-
----
 
 ## 🛠️ Installation
 
